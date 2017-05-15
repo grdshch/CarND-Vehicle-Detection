@@ -57,7 +57,7 @@ I tried various combinations of parameters , more and less orientations and diff
 
 I trained a linear SVM using `sklearn.svm.LinearSVC` classifier. I tried different classifiers, but couldn't get better score and `LinearSVC` was the fastest one. Also I used `sklearn.model_selection.GridSearchCV` fine tuning classifier's C parameter. I selected value `C=0.005` which gave the best score.
 
-Result score is `...%`.
+Result score is `98.9%`.
 
 ---
 
