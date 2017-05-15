@@ -23,7 +23,7 @@ The goals / steps of this project are the following:
 ---
 ### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.
 
 You're reading it!
 
@@ -49,11 +49,11 @@ I loaded all the `vehicle` and `non-vehicle` images and extracted hog features, 
 
 ![alt text][image2]
 
-####2. Explain how you settled on your final choice of HOG parameters.
+#### 2. Explain how you settled on your final choice of HOG parameters.
 
 I tried various combinations of parameters , more and less orientations and different number of pixels per cell and cells per block. Results didn't differ much and I selected parameters mentioned before as quite good ones. Also I tried different color spaces and selected `YCrCb` one.
 
-####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
+#### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
 I trained a linear SVM using `sklearn.svm.LinearSVC` classifier. I tried different classifiers, but couldn't get better score and `LinearSVC` was the fastest one. Also I used `sklearn.model_selection.GridSearchCV` fine tuning classifier's C parameter. I selected value `C=0.005` which gave the best score.
 
@@ -61,9 +61,9 @@ Result score is `98.9%`.
 
 ---
 
-###Sliding Window Search
+### Sliding Window Search
 
-####1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
+#### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
 I decided to calculate HOG features for the whole image and then to slide a window along it with different scales. This is much faster then calculating HOG for each window. Here is the example of the grid I got with overlapped windows and with scale `1.5`:
 
@@ -73,7 +73,7 @@ Due to different size of cars on images I selected two scales - `1.25` and `1.5`
 
 Sliding window, detecting cars and collecting bounding boxes is done in cell 13 of [project.ipynb] in function `find_cars`. It supports several scales at once and return all found bounding boxes.
 
-####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
+#### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 Here are some example images:
 
@@ -83,11 +83,11 @@ Here are some example images:
 
 ### Video Implementation
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
+#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 Here's a [project_video_result.mp4](https://github.com/grdshch/CarND-Vehicle-Detection/blob/master/project_video_result.mp4)
 
 
-####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
+#### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
@@ -101,9 +101,9 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 My solution may be too hardcoded to the project video: size of window to search cars (actually, at may be calibrated for the specific self driving car), size of cars - some motorcyvle or huge truck may be missed due to their size.
 
